@@ -1,5 +1,5 @@
 <template>
-  <view>Car</view>
+  <view> </view>
 </template>
 
 <script>

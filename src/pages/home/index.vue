@@ -1,5 +1,8 @@
 <template>
   <view>
+    <view class="search-box">
+      <MySearch @click="gotoSearch"></MySearch>
+    </view>
     <!-- 轮播图 -->
     <swiper
       :indicator-dots="true"
@@ -64,6 +67,7 @@
 </template>
 
 <script>
+import MySearch from "../../components/my-search/index.vue";
 export default {
   name: "home",
   data() {
@@ -106,8 +110,12 @@ export default {
       });
       this.floorList = res.message;
     },
+    gotoSearch() {
+      uni.navigateTo({
+        url: "../../subpkg/search/index",
+      });
+    },
   },
-
   // 页面周期函数--监听页面加载
   onLoad() {
     this.getSwiperList();
@@ -122,14 +130,7 @@ export default {
   onHide() {},
   // 页面周期函数--监听页面卸载
   onUnload() {},
-  // 页面处理函数--监听用户下拉动作
-  // onPullDownRefresh() { uni.stopPullDownRefresh(); },
-  // 页面处理函数--监听用户上拉触底
-  // onReachBottom() {},
-  // 页面处理函数--监听页面滚动(not-nvue)
-  // onPageScroll(event) {},
-  // 页面处理函数--用户点击右上角分享
-  // onShareAppMessage(options) {},
+  components: { MySearch },
 };
 </script>
 
@@ -168,5 +169,14 @@ swiper {
 .floor-img-box {
   display: flex;
   padding-left: 10rpx;
+}
+
+.search-box {
+  // 设置定位效果为“吸顶”
+  position: sticky;
+  // 吸顶的“位置”
+  top: 0;
+  // 提高层级，防止被轮播图覆盖
+  z-index: 999;
 }
 </style>

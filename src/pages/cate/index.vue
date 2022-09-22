@@ -1,5 +1,6 @@
 <template>
   <view>
+    <my-search @click="gotoSearch"></my-search>
     <view class="scroll-view-container">
       <scroll-view
         class="left-scroll-view"
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+import MySearch from "../../components/my-search/index.vue";
 export default {
   name: "cate",
   data() {
@@ -72,12 +74,16 @@ export default {
         url: "/subpkg/goods_list/index?cid=" + item3.cat_id,
       });
     },
+    gotoSearch() {
+      uni.navigateTo({
+        url: "../../subpkg/search/index",
+      });
+    },
   },
-
   // 页面周期函数--监听页面加载
   onLoad() {
     const sysInfo = uni.getSystemInfoSync();
-    this.wh = sysInfo.windowHeight;
+    this.wh = sysInfo.windowHeight - 50;
     this.getCateList();
   },
   // 页面周期函数--监听页面初次渲染完成
@@ -88,14 +94,7 @@ export default {
   onHide() {},
   // 页面周期函数--监听页面卸载
   onUnload() {},
-  // 页面处理函数--监听用户下拉动作
-  // onPullDownRefresh() { uni.stopPullDownRefresh(); },
-  // 页面处理函数--监听用户上拉触底
-  // onReachBottom() {},
-  // 页面处理函数--监听页面滚动(not-nvue)
-  // onPageScroll(event) {},
-  // 页面处理函数--用户点击右上角分享
-  // onShareAppMessage(options) {},
+  components: { MySearch },
 };
 </script>
 
@@ -132,6 +131,7 @@ export default {
     font-weight: bold;
     text-align: center;
     border: 15px 0;
+    margin: 20px 0;
   }
 
   .cate-lv3 {
