@@ -68,8 +68,10 @@
 
 <script>
 import MySearch from "../../components/my-search/index.vue";
+import badgeMix from "../../mixins/tabbar-badge";
 export default {
   name: "home",
+  mixins: [badgeMix],
   data() {
     return {
       swiperList: [],

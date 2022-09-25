@@ -3,8 +3,10 @@
 </template>
 
 <script>
+import badgeMix from "../../mixins/tabbar-badge";
 export default {
   name: "my",
+  mixins: [badgeMix],
   components: {},
   props: {},
   data() {

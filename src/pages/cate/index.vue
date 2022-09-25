@@ -46,8 +46,10 @@
 
 <script>
 import MySearch from "../../components/my-search/index.vue";
+import badgeMix from "../../mixins/tabbar-badge";
 export default {
   name: "cate",
+  mixins: [badgeMix],
   data() {
     return {
       wh: 0,
