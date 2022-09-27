@@ -1,21 +1,21 @@
 <template>
-  <view>My</view>
+  <view class="my-container">
+    <MyLogin v-if="!token"></MyLogin>
+    <MyUserinfo v-else></MyUserinfo>
+  </view>
 </template>
 
 <script>
 import badgeMix from "../../mixins/tabbar-badge";
+import { mapState } from "vuex";
+import MyLogin from "../../components/my-login/index.vue";
+import MyUserinfo from "../../components/my-userinfo/index.vue";
 export default {
   name: "my",
   mixins: [badgeMix],
-  components: {},
-  props: {},
-  data() {
-    return {};
+  computed: {
+    ...mapState("m_user", ["token"]),
   },
-  computed: {},
-  methods: {},
-  watch: {},
-
   // 页面周期函数--监听页面加载
   onLoad() {},
   // 页面周期函数--监听页面初次渲染完成
@@ -26,15 +26,13 @@ export default {
   onHide() {},
   // 页面周期函数--监听页面卸载
   onUnload() {},
-  // 页面处理函数--监听用户下拉动作
-  // onPullDownRefresh() { uni.stopPullDownRefresh(); },
-  // 页面处理函数--监听用户上拉触底
-  // onReachBottom() {},
-  // 页面处理函数--监听页面滚动(not-nvue)
-  // onPageScroll(event) {},
-  // 页面处理函数--用户点击右上角分享
-  // onShareAppMessage(options) {},
+  components: { MyLogin, MyUserinfo },
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+page,
+.my-container {
+  height: 100%;
+}
+</style>

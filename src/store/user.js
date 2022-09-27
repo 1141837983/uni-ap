@@ -6,6 +6,9 @@ export default {
   state: () => ({
     // 收货地址
     address: JSON.parse(uni.getStorageSync("address") || "{}"),
+    token: uni.getStorageSync("token") || "",
+    userInfo: JSON.parse(uni.getStorageSync("userInfo") || "{}"),
+    redirectInfo: null,
   }),
 
   // 方法
@@ -17,6 +20,23 @@ export default {
     },
     saveAddressToStorage(state) {
       uni.setStorageSync("address", JSON.stringify(state.address));
+    },
+    updateUserInfo(state, userInfo) {
+      state.userInfo = userInfo;
+      this.commit("m_user/saveUserInfoToStorage");
+    },
+    saveUserInfoToStorage(state) {
+      uni.setStorageSync("userInfo", JSON.stringify(state.userInfo));
+    },
+    saveTokenToStorage(state) {
+      uni.setStorageSync("token", state.token);
+    },
+    updateToken(state, token) {
+      state.token = token;
+      this.commit("m_user/saveTokenToStorage");
+    },
+    updateRedirectInfo(state, info) {
+      state.redirectInfo = info;
     },
   },
 
